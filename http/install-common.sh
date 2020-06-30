@@ -69,6 +69,7 @@ ConditionFirstBoot=yes
 [Service]
 Type=oneshot
 RemainAfterExit=yes
+ExecStartPre=timeout 30 sh -c 'until ping -c1 archlinux.org; do sleep 1; done;'
 ExecStart=reflector --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
 [Install]
